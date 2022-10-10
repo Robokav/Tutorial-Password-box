@@ -28,7 +28,9 @@ int C = 0;
 int r = 0;
 int s=0;
 Servo servo_pin_10;
-
+int led =12;//green led
+int rled =13;//red led
+int buzz =11;//buzzer
 void setup() {
   lcd.begin();
   servo_pin_10.attach(10);
@@ -43,9 +45,9 @@ void setup() {
   C = 8;
 
   r = 0;
-  pinMode(12,OUTPUT);
-  pinMode(13,OUTPUT);
-  pinMode(11,OUTPUT);
+  pinMode(led,OUTPUT);
+  pinMode(rled,OUTPUT);
+  pinMode(buzz,OUTPUT);
 
   lcd.setCursor(2, 0);
   lcd.print("Please Enter");
@@ -66,9 +68,9 @@ void loop() {
     C = ( C + 1 );
     lcd.setCursor(C, 0);
     lcd.print(key);
-    digitalWrite(11,HIGH);
+    digitalWrite(buzz,HIGH);
     delay(100);
-    digitalWrite(11,LOW);
+    digitalWrite(buzz,LOW);
     r = ( r + 1 );
     //C = ( C + 1 );
     
@@ -84,9 +86,9 @@ if (( ( p == 11 ) && ( r == 7 ) )) {
   p=0;
   r=0;
   C=8;
-  digitalWrite(12,HIGH);
+  digitalWrite(led,HIGH);
   delay(2000);
-  digitalWrite(12,LOW);
+  digitalWrite(led,LOW);
   servo_pin_10.write(100);
   lcd.clear();
   lcd.setCursor(1, 0);
@@ -96,9 +98,9 @@ if (( ( p == 11 ) && ( r == 7 ) )) {
 }
 if (( ( p != 11 ) && ( r == 7 ) )) {
   servo_pin_10.write(0);
-  digitalWrite(13,HIGH);
+  digitalWrite(rled,HIGH);
   delay(1000);
-  digitalWrite(13,LOW);
+  digitalWrite(rled,LOW);
   lcd.clear();
   lcd.setCursor(1, 0);
   lcd.print("Wrong Password");
